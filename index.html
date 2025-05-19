@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePass AI - Your Smart Password Companion</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Background effects -->
+    <div class="bg-gradient"></div>
+    <div class="bg-effects">
+      <div class="bg-blob blue-blob"></div>
+      <div class="bg-blob purple-blob"></div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="intro-screen">
+      <div class="lock-container">
+        <div class="lock-glow"></div>
+        <div class="lock-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="intro-title">SecurePass AI</h1>
+      <p class="intro-subtitle">Your Smart Password Companion</p>
+
+      <button id="get-started-btn" class="get-started-btn">Get Started</button>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="main-app hidden">
+      <div class="app-header">
+        <h1 class="app-title">SecurePass AI</h1>
+        <p class="app-subtitle">Your Smart Password Companion</p>
+      </div>
+
+      <div class="app-content">
+        <!-- Left Panel: Password Analyzer -->
+        <div class="panel analyzer-panel">
+          <div class="panel-blob"></div>
+
+          <h2 class="panel-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Password Analyzer
+          </h2>
+
+          <div class="input-container">
+            <input type="text" id="password-input" placeholder="Enter your password" class="password-input">
+            <button id="clear-btn" class="clear-btn hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div id="strength-container" class="strength-container hidden">
+            <div class="strength-header">
+              <span class="strength-label">Strength</span>
+              <span id="strength-text" class="strength-text">Medium</span>
+            </div>
+            <div class="strength-bar-bg">
+              <div id="strength-bar" class="strength-bar"></div>
+            </div>
+          </div>
+
+          <div id="strong-message" class="strong-message hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>Strong password!</span>
+          </div>
+
+          <div class="button-group">
+            <button id="generate-btn" class="primary-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Generate Strong Password
+            </button>
+
+            <button id="copy-btn" class="secondary-btn hidden">
+              <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg id="check-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span id="copy-text">Copy to Clipboard</span>
+            </button>
+          </div>
+
+          <div id="alternative-container" class="alternative-container hidden">
+            <div class="alternative-header">
+              <h3 class="alternative-title">Memorable Alternative</h3>
+              <button id="tooltip-btn" class="tooltip-btn">
+                <span class="tooltip-text">How does this work?</span>
+              </button>
+            </div>
+
+            <div id="tooltip" class="tooltip hidden">
+              We improved your password using semantic + secure AI rules, making it stronger while keeping it memorable.
+            </div>
+
+            <div class="alternative-content">
+              <div id="alternative-password" class="alternative-password"></div>
+              <button id="shuffle-btn" class="icon-btn" title="Generate new alternative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 3 21 3 21 8"></polyline>
+                  <line x1="4" y1="20" x2="21" y2="3"></line>
+                  <polyline points="21 16 21 21 16 21"></polyline>
+                  <line x1="15" y1="15" x2="21" y2="21"></line>
+                  <line x1="4" y1="4" x2="9" y2="9"></line>
+                </svg>
+              </button>
+              <button id="alt-copy-btn" class="icon-btn" title="Copy to clipboard">
+                <svg id="alt-copy-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg id="alt-check-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Password Analysis -->
+        <div class="panel analysis-panel">
+          <div class="panel-blob"></div>
+
+          <h2 class="panel-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Password Analysis
+          </h2>
+
+          <div id="empty-analysis" class="empty-analysis">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <p class="empty-title">Enter a password to analyze</p>
+            <p class="empty-subtitle">We'll show you detailed metrics and suggestions to improve your password security.</p>
+          </div>
+
+          <div id="analysis-content" class="analysis-content hidden">
+            <div class="entropy-container">
+              <div class="entropy-header">
+                <span class="entropy-label">Entropy Score</span>
+                <span id="entropy-value" class="entropy-value">0/100</span>
+              </div>
+              <div class="entropy-bar-bg">
+                <div id="entropy-bar" class="entropy-bar"></div>
+              </div>
+            </div>
+
+            <div class="crack-time-container">
+              <div class="crack-time-header">
+                <span class="crack-time-label">Estimated Crack Time</span>
+                <span id="crack-time" class="crack-time">Instantly</span>
+              </div>
+            </div>
+
+            <div class="checks-grid">
+              <div id="uppercase-check" class="check-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Uppercase</span>
+              </div>
+              <div id="lowercase-check" class="check-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Lowercase</span>
+              </div>
+              <div id="numbers-check" class="check-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Numbers</span>
+              </div>
+              <div id="special-check" class="check-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Special</span>
+              </div>
+            </div>
+
+            <div class="uniqueness-container">
+              <div class="uniqueness-header">
+                <span class="uniqueness-label">Password Uniqueness</span>
+                <span id="uniqueness-value" class="uniqueness-value">0%</span>
+              </div>
+              <div class="uniqueness-bar-bg">
+                <div id="uniqueness-bar" class="uniqueness-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Tips -->
+          <div class="security-tip-container">
+            <h3 class="security-tip-title">Security Tip</h3>
+            <p id="security-tip" class="security-tip">A password with 15+ characters and symbols takes centuries to crack!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
